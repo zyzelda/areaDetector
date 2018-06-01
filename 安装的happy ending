@@ -1,0 +1,9 @@
+上周错误百出，改不好。反不如回到第一个错误：致命错误：libxml/parser.h没有那个文件或目录
+上周我是这样做的：
+   （1）ADCore/ADApp/ADSrc中的Makefile去掉黄色的部分（思路：既然xml没有安装，那xml的部分我给注释掉，不就解决了吗。PS:本身是仿真，
+   没有必要装libxml2吧。但是libxml2和xml2应该是一回事吧。Orz。。。）编译依旧有错，错误提醒同上。
+我的思路是错的，它说没有 ，你加上就是了啊。
+本周我不逃避或者少安装了，却什么安装什么，结果Happy ending：
+    在/BLC/epics	下面安装了libxml（下载，解压，sh configure ，make，make install），
+    然后在areaDetector/configure下面的RELEASE_LIBS.local加了一句话:LIBXML=$(SUPPORT)/libxml2-2.9.8，再次make居然就没有错误了…………
+结论：模块与模块之间环环相扣，内部也是环环相扣的。少了东西，最后加上，而不是不安装或者逃避它。
