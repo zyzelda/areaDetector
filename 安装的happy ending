@@ -7,3 +7,8 @@
     在/BLC/epics	下面安装了libxml（下载，解压，sh configure ，make，make install），
     然后在areaDetector/configure下面的RELEASE_LIBS.local加了一句话:LIBXML=$(SUPPORT)/libxml2-2.9.8，再次make居然就没有错误了…………
 结论：模块与模块之间环环相扣，内部也是环环相扣的。少了东西，最后加上，而不是不安装或者逃避它。
+
+$(top)/makefile里面有include $ $(top)/configure/CONFIG
+而CONFIGUE里面一般有include$(top)/configure/RELEASE或者
+include$(top)/configure/RELEASE.local等等，它们一般是对于路径的描述，因此，不要重复定义，只要能够包含，或者能够正确指引安装路径及支持模块路径即可。
+
